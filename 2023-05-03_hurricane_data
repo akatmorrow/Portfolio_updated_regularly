@@ -1,0 +1,286 @@
+# names of hurricanes
+names = ['Cuba I', 'San Felipe II Okeechobee', 'Bahamas', 'Cuba II', 'CubaBrownsville', 'Tampico', 'Labor Day', 'New England', 'Carol', 'Janet', 'Carla', 'Hattie', 'Beulah', 'Camille', 'Edith', 'Anita', 'David', 'Allen', 'Gilbert', 'Hugo', 'Andrew', 'Mitch', 'Isabel', 'Ivan', 'Emily', 'Katrina', 'Rita', 'Wilma', 'Dean', 'Felix', 'Matthew', 'Irma', 'Maria', 'Michael']
+
+# months of hurricanes
+months = ['October', 'September', 'September', 'November', 'August', 'September', 'September', 'September', 'September', 'September', 'September', 'October', 'September', 'August', 'September', 'September', 'August', 'August', 'September', 'September', 'August', 'October', 'September', 'September', 'July', 'August', 'September', 'October', 'August', 'September', 'October', 'September', 'September', 'October']
+
+# years of hurricanes
+years = [1924, 1928, 1932, 1932, 1933, 1933, 1935, 1938, 1953, 1955, 1961, 1961, 1967, 1969, 1971, 1977, 1979, 1980, 1988, 1989, 1992, 1998, 2003, 2004, 2005, 2005, 2005, 2005, 2007, 2007, 2016, 2017, 2017, 2018]
+
+# maximum sustained winds (mph) of hurricanes
+max_sustained_winds = [165, 160, 160, 175, 160, 160, 185, 160, 160, 175, 175, 160, 160, 175, 160, 175, 175, 190, 185, 160, 175, 180, 165, 165, 160, 175, 180, 185, 175, 175, 165, 180, 175, 160]
+
+# areas affected by each hurricane
+areas_affected = [['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], ['Lesser Antilles', 'The Bahamas', 'United States East Coast', 'Atlantic Canada'], ['The Bahamas', 'Northeastern United States'], ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'], ['The Bahamas', 'Cuba', 'Florida', 'Texas', 'Tamaulipas'], ['Jamaica', 'Yucatn Peninsula'], ['The Bahamas', 'Florida', 'Georgia', 'The Carolinas', 'Virginia'], ['Southeastern United States', 'Northeastern United States', 'Southwestern Quebec'], ['Bermuda', 'New England', 'Atlantic Canada'], ['Lesser Antilles', 'Central America'], ['Texas', 'Louisiana', 'Midwestern United States'], ['Central America'], ['The Caribbean', 'Mexico', 'Texas'], ['Cuba', 'United States Gulf Coast'], ['The Caribbean', 'Central America', 'Mexico', 'United States Gulf Coast'], ['Mexico'], ['The Caribbean', 'United States East coast'], ['The Caribbean', 'Yucatn Peninsula', 'Mexico', 'South Texas'], ['Jamaica', 'Venezuela', 'Central America', 'Hispaniola', 'Mexico'], ['The Caribbean', 'United States East Coast'], ['The Bahamas', 'Florida', 'United States Gulf Coast'], ['Central America', 'Yucatn Peninsula', 'South Florida'], ['Greater Antilles', 'Bahamas', 'Eastern United States', 'Ontario'], ['The Caribbean', 'Venezuela', 'United States Gulf Coast'], ['Windward Islands', 'Jamaica', 'Mexico', 'Texas'], ['Bahamas', 'United States Gulf Coast'], ['Cuba', 'United States Gulf Coast'], ['Greater Antilles', 'Central America', 'Florida'], ['The Caribbean', 'Central America'], ['Nicaragua', 'Honduras'], ['Antilles', 'Venezuela', 'Colombia', 'United States East Coast', 'Atlantic Canada'], ['Cape Verde', 'The Caribbean', 'British Virgin Islands', 'U.S. Virgin Islands', 'Cuba', 'Florida'], ['Lesser Antilles', 'Virgin Islands', 'Puerto Rico', 'Dominican Republic', 'Turks and Caicos Islands'], ['Central America', 'United States Gulf Coast (especially Florida Panhandle)']]
+
+# damages (USD($)) of hurricanes
+damages = ['Damages not recorded', '100M', 'Damages not recorded', '40M', '27.9M', '5M', 'Damages not recorded', '306M', '2M', '65.8M', '326M', '60.3M', '208M', '1.42B', '25.4M', 'Damages not recorded', '1.54B', '1.24B', '7.1B', '10B', '26.5B', '6.2B', '5.37B', '23.3B', '1.01B', '125B', '12B', '29.4B', '1.76B', '720M', '15.1B', '64.8B', '91.6B', '25.1B']
+
+# deaths for each hurricane
+deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,318,107,65,19325,51,124,17,1836,125,87,45,133,603,138,3057,74]
+
+# 1
+# Update Recorded Damages
+conversion = {"M": 1000000,
+              "B": 1000000000}
+
+# test function by updating damages
+def updated_damages(damages):
+  updated_damages_list = []
+  converted_mb = 0
+  float_number = 0
+  var = ''
+  num_var = 0
+  for amount in damages:
+    if "M" in amount:
+      converted_mb = conversion.get('M')
+      var = amount.split('M')
+      num_var = float(var[0])
+      float_number = num_var * float(converted_mb)
+      updated_damages_list.append(float_number)
+    elif "B" in amount:
+      converted_mb = conversion.get('B') 
+      var = amount.split('B')
+      num_var = float(var[0])
+      float_number = num_var * float(converted_mb)
+      updated_damages_list.append(float_number)
+    else:
+      updated_damages_list.append(amount)
+  return updated_damages_list
+
+integer_damages = updated_damages(damages)
+
+# 2 
+# Create a Table
+#the following are lists, not dictionaries but I'm not changing the variables
+def create_dict(name_string, list_name):
+  new_dictionary = []
+  for item in list_name:
+    new_dictionary.append(str(name_string) + " : " + str(item))
+  return new_dictionary
+
+names_dictionary = create_dict('Name', names)
+months_dictionary = create_dict('Month', months)
+years_dictionary = create_dict('Year', years)
+winds_dictionary = create_dict('Max Sustained Wind', max_sustained_winds)
+areas_dictionary = create_dict('Areas Affected', areas_affected)
+damages_dictionary = create_dict('Damages', damages)
+deaths_dictionary = create_dict('Deaths', deaths)
+zip_list = zip(names_dictionary, months_dictionary, years_dictionary, winds_dictionary, areas_dictionary, damages_dictionary, deaths_dictionary)
+zipped_list = list(zip_list)
+#print(zipped_list)
+
+#print(names_dictionary)
+
+
+
+
+# Create and view the hurricanes dictionary
+def hurricane_dictionary_maker(names, giant_list):
+  hurricanes_dictionary = {names : giant_list for names, giant_list in zip(names, giant_list)}
+  return hurricanes_dictionary
+
+
+
+hurricanes_by_name = hurricane_dictionary_maker(names, zipped_list)
+#print(hurricanes_by_name)
+
+
+#print(hurricanes_by_name.get('Michael'))
+
+# 3
+# Organizing by Year
+hurricanes_by_year = hurricane_dictionary_maker(years, zipped_list)
+#print(hurricanes_by_year)
+# create a new dictionary of hurricanes with year and key
+
+
+
+#hurricanes_by_area = hurricane_dictionary_maker(areas_affected, zipped_list)
+#print(hurricanes_by_area)
+
+# 4
+# Counting Damaged Areas
+
+# create dictionary of areas to store the number of hurricanes involved in
+def hurricane_areas(area, list_of_areas):
+  count = 0
+  for locations in list_of_areas:
+    count += locations.count(str(area))
+  return count
+
+#Check function -- print(hurricane_areas('Ontario', areas_affected))
+
+# 5 
+# Calculating Maximum Hurricane Count
+def most_affected(list_of_areas):
+  count = 0
+  winner = ''
+  for location in list_of_areas:
+    for locale in location:
+      comparison = hurricane_areas(str(locale), list_of_areas)
+      if comparison > count:
+        count = comparison
+        winner = locale
+  return str(winner) + ' was the most hit location, being hit ' + str(count) + ' number of times.'
+
+# test most_affected print(most_affected(areas_affected))
+
+# find most frequently affected area and the number of hurricanes involved in
+
+
+# 6
+# Calculating the Deadliest Hurricane
+
+# find highest mortality hurricane and the number of deaths
+#print(deaths)
+def death_count(deaths, giant_list):
+  deaths_dictionary = {deaths : giant_list for deaths, giant_list in zip(deaths, giant_list)}
+  sorted_deaths = sorted(deaths_dictionary)
+  max_death_and_name = sorted_deaths
+  return max_death_and_name
+
+#the one below this is correct
+def death_count2(deaths, names):
+  zipped = zip(deaths, names)
+  list_zip = list(zipped)
+  sorted_list = sorted(list_zip)
+  return sorted_list[-1]
+
+# test death_count2 print(death_count2(deaths, names))
+
+
+
+# 7
+# Rating Hurricanes by Mortality
+
+
+def mortality_return(deaths, names):
+  zip_names_deaths = sorted(list(zip(deaths, names)), reverse=True)
+  reverse_deaths = sorted(deaths, reverse = True)
+  mortality_scale = {0: 0,
+  1: 100,
+  2: 500,
+  3: 1000,
+  4: 10000}
+  mortalities_dictionary = {}
+  category_1 = []
+  category_2 = []
+  category_3 = []
+  category_4 = []
+  category_0 = []
+  for death in zip_names_deaths:
+      if int(death[0]) > 0 and int(death[0]) < 100:
+          category_1.append(death)
+          mortalities_dictionary['1'] = category_1
+      elif int(death[0]) >= 100 and int(death[0]) < 500:
+        category_2.append(death)
+        mortalities_dictionary['2'] = category_2
+      elif int(death[0]) >= 500 and int(death[0]) < 1000:
+        category_3.append(death)
+        mortalities_dictionary['3'] = category_3
+      elif int(death[0]) >= 1000:
+        category_4.append(death)
+        mortalities_dictionary['4'] = category_4
+      else:
+        category_0.append(death)
+        mortalities_dictionary['0'] = category_0
+  return mortalities_dictionary
+
+
+
+  #return zip_names_deaths
+
+check_mortality_scale = mortality_return(deaths, names)
+#check moratility_checker print(check_mortality_scale.get('4'))
+
+
+  
+
+
+# categorize hurricanes in new dictionary with mortality severity as key
+
+
+# 8 Calculating Hurricane Maximum Damage
+
+def max_damage(names, damages):
+  names_damages = sorted(list(zip(names, damages)), reverse = True)
+  return names_damages[0]
+
+#check print(max_damage(names, damages))
+
+
+
+# find highest damage inducing hurricane and its total cost
+
+
+# 9
+# Rating Hurricanes by Damage
+damage_scale = {0: 0,
+                1: 100000000,
+                2: 1000000000,
+                3: 10000000000,
+                4: 50000000000}
+  
+
+def damages_return(damages, names):
+  zip_names_damages = sorted(list(zip(damages, names)), reverse=True)
+  reverse_damages = sorted(damages, reverse = True)
+  mortalities_dictionary = {}
+  category_1 = []
+  category_2 = []
+  category_3 = []
+  category_4 = []
+  category_0 = []
+  category_5 = []
+  for death in zip_names_damages:
+      if int(death[0]) > 0 and int(death[0]) < 100000000:
+          category_1.append(death)
+          mortalities_dictionary['1'] = category_1
+      elif int(death[0]) >= 100000000 and int(death[0]) < 1000000000:
+        category_2.append(death)
+        mortalities_dictionary['2'] = category_2
+      elif int(death[0]) >= 1000000000 and int(death[0]) < 5000000000:
+        category_3.append(death)
+        mortalities_dictionary['3'] = category_3
+      elif int(death[0]) >= 1000000000 and int(death[0]) < 5000000000:
+        category_4.append(death)
+        mortalities_dictionary['4'] = category_4
+      elif int(death[0]) > 5000000000:
+        category_5.append(death)
+        mortalities_dictionary['5'] = category_5
+      else:
+        category_0.append(death)
+        mortalities_dictionary['0'] = category_0
+  return mortalities_dictionary
+
+
+def updated_damages2(damages):
+  updated_damages_list = []
+  converted_mb = 0
+  float_number = 0
+  var = ''
+  num_var = 0
+  for amount in damages:
+    if "M" in amount:
+      converted_mb = conversion.get('M')
+      var = amount.split('M')
+      num_var = float(var[0])
+      float_number = num_var * float(converted_mb)
+      updated_damages_list.append(float_number)
+    elif "B" in amount:
+      converted_mb = conversion.get('B') 
+      var = amount.split('B')
+      num_var = float(var[0])
+      float_number = num_var * float(converted_mb)
+      updated_damages_list.append(float_number)
+    else:
+      pass
+      #updated_damages_list.append(amount)
+  return updated_damages_list
+
+damages_no_strings = updated_damages2(damages)
+
+damage_scale_dictionary = (damages_return(damages_no_strings, names))
+#checking function print(damage_scale_dictionary.get('3'))
+# categorize hurricanes in new dictionary with damage severity as key
